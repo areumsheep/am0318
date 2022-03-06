@@ -8,13 +8,12 @@ import Service from '../service';
 import { useNavigate } from 'react-router-dom';
 
 const Complete = () => {
-
   const { state } = useLocation();
   const name = 'hello';
   const sender = 'hi';
   const service = Service();
   const navigate = useNavigate();
-  const handleSaveAward = async state => {
+  const handleSaveAward = async (state) => {
     const data = await service.updateAward(state);
 
     console.log(data);
@@ -30,7 +29,11 @@ const Complete = () => {
       <Wrapper>
         <ResultAward name={''} awardParam={state} />
         <ButtonWrapper>
-          <Button theme="action" text="상장 수여하겠상!" onClick={() => handleSaveAward(state)} />
+          <Button
+            theme="action"
+            text="상장 수여하겠상!"
+            onClick={() => handleSaveAward(state)}
+          />
           <Button text="나도 받고 싶상!" onClick={() => navigate('/')} />
         </ButtonWrapper>
       </Wrapper>

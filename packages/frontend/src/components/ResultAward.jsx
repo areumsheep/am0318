@@ -11,7 +11,9 @@ function ResultAward({ awardParam }) {
 
   return (
     <Wrapper>
-      <AwardWrapper backgroundImage={getTemplate(parseInt(awardParam.templateId))}>
+      <AwardWrapper
+        backgroundImage={getTemplate(parseInt(awardParam.templateId))}
+      >
         <AwardTitle>{awardParam?.title || ''}</AwardTitle>
         <AwardDetail>
           <DetailTop>
