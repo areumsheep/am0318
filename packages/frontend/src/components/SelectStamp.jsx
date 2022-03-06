@@ -15,20 +15,22 @@ const SelectStamp = ({ handleClick, changeItems, selectedStamp }) => {
 
   return (
     <Layout title={'도장을 찍고 완성하상!'}>
-      <StyledStamp selected={getImage(selectedStamp)}>
-        <div></div>
-      </StyledStamp>
-      <h4>{DESC_STAMP[selectedStamp]?.title}</h4>
-      <span>{DESC_STAMP[selectedStamp]?.desc}</span>
-      <StyledGrid>
-        {DESC_STAMP.map((item, index) => {
-          return (
-            <div key={item.title + item.desc} onClick={() => changeItems(index, 'stickerId')}>
-              <img src={getStamp(index)} />
-            </div>
-          );
-        })}
-      </StyledGrid>
+      <BoxWrapper>
+        <StyledStamp selected={getImage(selectedStamp)}>
+          <div></div>
+        </StyledStamp>
+        <h4>{DESC_STAMP[selectedStamp]?.title}</h4>
+        <span>{DESC_STAMP[selectedStamp]?.desc}</span>
+        <StyledGrid>
+          {DESC_STAMP.map((item, index) => {
+            return (
+              <div key={item.title + item.desc} onClick={() => changeItems(index, 'stickerId')}>
+                <img src={getStamp(index)} />
+              </div>
+            );
+          })}
+        </StyledGrid>
+      </BoxWrapper>
       <Button theme="action" text="다음" onClick={handleClick} />
     </Layout>
   );
@@ -42,18 +44,26 @@ const StyledGrid = styled.div`
   grid-template-rows: repeat(2, 50px);
   grid-gap: 50px 30px;
   margin-bottom: 20px;
+  margin-top: 35px;
   div {
     cursor: pointer;
   }
 `;
 const StyledStamp = styled.div`
+  margin-top: 40px;
   min-width: 216px;
   min-height: 216px;
   overflow: hidden;
+
   div {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+    width: 216px;
+    height: 216px;
     background-image: ${({ selected }) => `url(${selected})`};
   }
+`;
+const BoxWrapper = styled.div`
+  height: 100%;
+  margin-top: 24px;
+  margin-bottom: 50px;
+  text-align: center;
 `;

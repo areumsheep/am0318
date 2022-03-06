@@ -1,24 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
-import Template from '../assets/images/award_blue.svg';
-import Stamp from '../assets/icons/stampImage1.svg';
+import { getImage, getTemplate } from '../utils/GetSvg';
 
-function ResultAward() {
+function ResultAward({ awardParam }) {
   const today = new Date();
-  const name = '노아';
-  const prize_name = '최고의밥상 ';
-  const detail = '다이어트 중에도 식용이 왕성해 이것저것 골고루 잘 먹는다';
   const sender = '반가워!';
   const date = `${today.getFullYear()}년 ${today.getMonth()}월 ${today.getDate()}일`;
 
   return (
     <Wrapper>
-      <AwardWrapper>
-        <AwardTitle>{prize_name}</AwardTitle>
+      <AwardWrapper backgroundImage={getTemplate(parseInt(awardParam.templateId))}>
+        <AwardTitle>{awardParam?.title || ''}</AwardTitle>
         <AwardDetail>
           <DetailTop>
-            <AwardLine>{name}는(은)</AwardLine>
-            <AwardLine>{detail}</AwardLine>
+            <AwardLine>{awardParam.name}는(은)</AwardLine>
+            <AwardLine>{awardParam?.description || ''}</AwardLine>
             <AwardLine>따라서 이 상장을 수여하겠상!</AwardLine>
           </DetailTop>
           <DetailBottom>
@@ -26,7 +22,7 @@ function ResultAward() {
             <AwardLine>{sender}</AwardLine>
           </DetailBottom>
         </AwardDetail>
-        <StampImg src={Stamp} />
+        <StampImg src={getImage(parseInt(awardParam.stickerId))} />
       </AwardWrapper>
     </Wrapper>
   );
@@ -36,17 +32,21 @@ export default ResultAward;
 
 const Wrapper = styled.main`
   margin: 30px 0px;
-  width: 100%;
   display: flex;
   justify-content: center;
-  height: 100%;
+  width: 318px;
+  height: 392px;
+  border: 2px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 const AwardWrapper = styled.div`
   position: relative;
-  border: 2px solid #000000;
-  max-width: 330px;
-  max-height: 410px;
-  background-image: url(${Template});
+  background-image: ${({ backgroundImage }) => `url(${backgroundImage})`};
+  background-repeat: no-repeat;
+  width: 310px;
+  height: 386px;
   background-size: cover;
   background-position: center;
   box-sizing: border-box;
