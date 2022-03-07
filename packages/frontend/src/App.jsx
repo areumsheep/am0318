@@ -1,5 +1,5 @@
 import React, { lazy } from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';;
+import { Route, Routes, Navigate } from 'react-router-dom';
 const Home = lazy(() => import('./pages/Home'));
 const Main = lazy(() => import('./pages/Main'));
 const Sender = lazy(() => import('./pages/Sender'));
@@ -14,10 +14,10 @@ function App() {
       {/* 이름 등록 화면  */}
       <Route path={'/main'} element={<Main />} />
       {/* 상장 보내는 화면 */}
-      <Route path={'/main/:id'} element={<Sender />} />
+      <Route path={'/send/:id'} element={<Sender />} />
       {/* 컬렉션 화면 */}
       <Route path={'/main/:id/storage'} element={<Storage />} />
-      <Route path={'/decorate'} element={<Decorate />} />
+      <Route path={'/:id/decorate'} element={<Decorate />} />
       <Route path={'/complete'} element={<Complete />} />
       {/* 404 페이지 작업 */}
       <Route path={'/404'} element={<ErrorPage />} />

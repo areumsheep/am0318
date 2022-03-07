@@ -17,11 +17,10 @@ const Service = () => {
     }
   };
 
-  self.getUser = async () => {
+  self.getUser = async userId => {
     try {
-      const userId = getLocalStorage(USER.USER_ID);
       const { data } = await getUser(userId);
-      return data.data;
+      return data;
     } catch (e) {
       console.log(e);
       alert(ERROR_MESSAGE.HTTP_REQUEST_FAILURE);
@@ -30,10 +29,8 @@ const Service = () => {
 
   self.updateAward = async awardParams => {
     try {
-      const userId = getLocalStorage(USER.USER_ID);
-      const { data } = await postUpdateAward(userId, awardParams);
-      console.log('data', data);
-      return data.data;
+      const { data } = await postUpdateAward(awardParams);
+      return data;
     } catch (e) {
       console.log(e);
       alert(ERROR_MESSAGE.HTTP_REQUEST_FAILURE);
